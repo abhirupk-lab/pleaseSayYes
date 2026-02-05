@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine? 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffd6e5;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* HEARTS */
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      color: #ff4d6d;
+      opacity: 0.8;
+      animation: floatUp 12s linear infinite;
+      pointer-events: none;
+    }
+
+    /* FLOATING IMAGES */
+    .floating-img {
+      position: absolute;
+      width: 120px;
+      border-radius: 15px;
+      opacity: 0.85;
+      animation: floatUp 18s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(110vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-150px) rotate(360deg);
+      }
+    }
+
+    /* CARD */
+    .card {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 120px;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ASKING CARD -->
+  <div class="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <p>(you don't have a choice..)</p>
+    <button class="yes" onclick="yes()">Yes 💕</button>
+    <button class="no" onmouseover="moveNo()">No 🙃</button>
+  </div>
+
+  <script>
+    function yes() {
+      document.body.innerHTML =
+        "<h1 style='color:#ff4d6d; text-align:center;'>❤️ SHII LETS GOOOO ❤️</h1>";
+    }
+
+    function moveNo() {
+      const btn = document.querySelector('.no');
+      btn.style.position = "absolute";
+      btn.style.top = Math.random() * 80 + "vh";
+      btn.style.left = Math.random() * 80 + "vw";
+    }
+
+    /* HEART SPAWN */
+    function spawnHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 12000);
+    }
+
+    /* FLOATING COUPLE IMAGE */
+    function spawnCoupleImage() {
+      const img = document.createElement("img");
+      img.src = "background.jpg";
+      img.className = "floating-img";
+      img.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 18000);
+    }
+
+    /* FLOATING YOU IMAGE */
+    function spawnYouImage() {
+      const img = document.createElement("img");
+      img.src = "me.jpg";
+      img.className = "floating-img";
+      img.style.left = Math.random() * 100 + "vw";
+      img.style.width = "100px";
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 18000);
+    }
+
+    setInterval(spawnHeart, 800);
+    setInterval(spawnCoupleImage, 4000);
+    setInterval(spawnYouImage, 6500);
+  </script>
+
+</body>
+</html>
